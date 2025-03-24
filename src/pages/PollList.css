@@ -1,0 +1,354 @@
+/* General container styling */
+.poll-list-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #6b48ff, #00ddeb); /* Vibrant gradient background */
+  padding: 3rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle background pattern */
+.poll-list-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"%3E%3Cg fill="%23ffffff" fill-opacity="0.1"%3E%3Cpath d="M0 0h40v40H0z"/%3E%3Cpath d="M20 20l10 10L20 20zm0 0l-10 10L20 20zm0 0l-10-10L20 20zm0 0l10-10L20 20z"/%3E%3C/g%3E%3C/svg%3E');
+  z-index: 0;
+}
+
+/* Title styling (Main heading - "Active Polls") */
+.poll-list-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #ffffff;
+  text-align: center; /* Keep "Active Polls" centered */
+  margin-bottom: 3rem;
+  font-family: 'Poppins', sans-serif;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  animation: slideIn 1s ease forwards;
+  z-index: 1;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Grid for poll cards */
+.polls-grid {
+  display: flex;
+  flex-direction: row; /* Horizontal layout */
+  flex-wrap: wrap; /* Allows cards to wrap to the next line */
+  gap: 2rem; /* Space between cards */
+  width: 100%;
+  max-width: 1200px; /* Increased max-width for horizontal layout */
+  z-index: 1;
+  justify-content: center; /* Center the cards horizontally */
+}
+
+/* Individual poll card */
+.poll-card {
+  background: linear-gradient(145deg, #ffffff, #f0f4f8); /* Subtle gradient on cards */
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: popIn 0.6s ease forwards;
+  opacity: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.poll-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15), 0 0 20px rgba(107, 72, 255, 0.3); /* Glow effect */
+}
+
+.poll-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.poll-header-top {
+  display: flex;
+  justify-content: flex-start; /* Align "Created by" and badge to the left */
+  align-items: center;
+  width: 100%;
+  gap: 0.5rem; /* Space between Created by and badge */
+}
+
+/* Poll title (Inside card - e.g., "asdshgjyhgjhgh") */
+.poll-card .poll-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 0.5rem;
+  font-family: 'Poppins', sans-serif;
+  text-align: left !important; /* Ensure title is left-aligned with higher specificity */
+}
+
+/* Creator badge */
+.creator-badge {
+  background: #48bb78;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Divider */
+.poll-divider {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(to right, #6b48ff, #00ddeb);
+  margin: 0.75rem 0;
+  border-radius: 2px;
+}
+
+/* Poll description */
+.poll-description {
+  font-size: 0.95rem;
+  color: #4a5568;
+  line-height: 1.6;
+  font-family: 'Inter', sans-serif;
+  transition: opacity 0.3s ease;
+  text-align: left; /* Ensure description is left-aligned */
+}
+
+/* Overlay on hover */
+.poll-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(107, 72, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.poll-card:hover .poll-overlay {
+  opacity: 1;
+}
+
+.poll-card:hover .poll-description {
+  opacity: 0.3;
+}
+
+.poll-overlay-text {
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  padding: 1rem;
+}
+
+.poll-creator {
+  font-size: 0.75rem; /* Smaller font size */
+  color: #9ca3af; /* Lighter gray for subtlety */
+  font-family: 'Inter', sans-serif;
+  font-style: italic; /* Optional: make it italic for distinction */
+}
+
+/* Action buttons group */
+.action-group {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* General button styling */
+.action-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.action-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* View button */
+.view-button {
+  background: linear-gradient(to right, #6b48ff, #00ddeb);
+  color: #ffffff;
+}
+
+.view-button:hover {
+  background: linear-gradient(to right, #5a3de6, #00c4d3);
+}
+
+/* Edit button */
+.edit-button {
+  background: linear-gradient(to right, #ff8c00, #f1c40f);
+  color: #ffffff;
+}
+
+.edit-button:hover {
+  background: linear-gradient(to right, #e67e00, #d4ac0d);
+}
+
+/* Delete button */
+.delete-button {
+  background: linear-gradient(to right, #ff4d4f, #ff7875);
+  color: #ffffff;
+}
+
+.delete-button:hover {
+  background: linear-gradient(to right, #e64446, #e66b68);
+}
+
+/* Loading spinner */
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid #ffffff;
+  border-top: 3px solid #6b48ff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Messages (auth, loading, empty) */
+.auth-message,
+.loading-message,
+.empty-message {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-align: center;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
+  backdrop-filter: blur(5px);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .polls-grid {
+    max-width: 600px;
+  }
+
+  .poll-title {
+    font-size: 1.3rem;
+  }
+
+  .poll-description {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .poll-list-container {
+    padding: 2rem 0.75rem;
+  }
+
+  .poll-list-title {
+    font-size: 2.5rem;
+  }
+
+  .polls-grid {
+    max-width: 500px;
+  }
+
+  .poll-card {
+    padding: 1.5rem;
+  }
+
+  .action-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .poll-list-title {
+    font-size: 2rem;
+  }
+
+  .polls-grid {
+    max-width: 100%;
+  }
+
+  .poll-card {
+    padding: 1.25rem;
+  }
+
+  .action-group {
+    gap: 0.75rem;
+  }
+
+  .action-button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  .auth-message,
+  .loading-message,
+  .empty-message {
+    font-size: 1rem;
+    padding: 1.5rem;
+  }
+}
